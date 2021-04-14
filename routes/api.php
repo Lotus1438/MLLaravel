@@ -22,7 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post("login",[UserController::class,'index']);
 Route::middleware(['auth', 'second'])->group(function () {
-    
+    Route::get('/welcome', function () {
+        return "Welcome!";
+    });
 });
 
 
