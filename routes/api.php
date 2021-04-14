@@ -21,10 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post("login",[UserController::class,'login']);
-Route::middleware(['auth', 'second'])->group(function () {
-    Route::get("/welcome", function () {
-        return "Welcome!";
-    });
+Route::middleware('auth:sanctum')->group(function(){
 });
 
 

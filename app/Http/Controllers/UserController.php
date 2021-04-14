@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,7 +14,7 @@ class UserController extends Controller
     function login(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'email' => 'required',
+            'password' => 'required',
             'email' => 'required|email'
         ]);
 
@@ -40,5 +41,16 @@ class UserController extends Controller
             return response($response, 201);
         }
 
+    }
+
+    public function logout(Request $request)
+    {
+        $user = Auth::user();
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Token deleted successfully!'
+        ]);
     }
 }

@@ -44,5 +44,45 @@ class DatabaseSeeder extends Seeder
             'email' => 'jenie.tomalon@mlhuillier.com',
             'password' => Hash::make('jenie2021')
         ]);
+
+        DB::table('users')->insert([
+            'email' => 'jose.morilla@mlhuillier.com',
+            'password' => Hash::make('jose2021')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'jasper.malubay@mlhuillier.com',
+            'password' => Hash::make('jasper2021')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'norberto.dano@mlhuillier.com',
+            'password' => Hash::make('norberto2021')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'rolando.justo@mlhuillier.com',
+            'password' => Hash::make('rolando2021')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'mark.celestial@mlhuillier.com',
+            'password' => Hash::make('mark2021')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'judelyn.cabalhao@mlhuillier.com',
+            'password' => Hash::make('judelyn2021')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'merry.ajoc@mlhuillier.com',
+            'password' => Hash::make('merry2021')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'roselyn.amoc@mlhuillier.com',
+            'password' => Hash::make('roselyn2021')
+        ]);
     }
 }
