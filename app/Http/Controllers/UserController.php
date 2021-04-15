@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -31,22 +32,29 @@ class UserController extends Controller
                 ], 404);
             }
 
-             $token = $user->createToken('my-app-token')->plainTextToken;
-
+            $token = $user->createToken('my-app-token')->plainTextToken;
             $response = [
-                'message' => ['Login Succesfully!'],
+                'message' => 'Login Succesfully!',
                 'token' => $token,
             ];
-
             return response($response, 201);
+
         }
 
     }
 
-    public function logout(Request $request)
+    public function getUsers()
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+
+    public function logout(User $id)
     {
         $user = Auth::user();
-        $request->user()->currentAccessToken()->delete();
+        // $user->currentAccessToken()->delete();
+
+        $user($id)->currentAccessToken()->delete();
 
         return response()->json([
             'status_code' => 200,
