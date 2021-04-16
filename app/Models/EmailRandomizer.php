@@ -11,8 +11,7 @@ class EmailRandomizer extends Model
 
     // protected $table = 'email_table';
 
-    protected $cast = [
-        'emails' => 'array'];
+    protected $cast = ['emails'];
 
 
 

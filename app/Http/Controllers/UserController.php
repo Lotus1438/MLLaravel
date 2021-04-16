@@ -12,6 +12,8 @@ use Illuminate\Validation\ValidationException;
 class UserController extends Controller
 {
 
+
+//code for log in with validation
     function login(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -25,7 +27,7 @@ class UserController extends Controller
         }else
         {
             $user= User::where('email', $request->email)->first();
-        // print_r($data);
+
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return response([
                     'message' => ['These credentials do not match our records.']
@@ -43,18 +45,20 @@ class UserController extends Controller
 
     }
 
+//code to get all the users
     public function getUsers()
     {
+        $user = Auth::user();
         $users = User::all();
         return response()->json($users);
     }
 
+
+    //code for user logout
     public function logout(User $id)
     {
         $user = Auth::user();
-        // $user->currentAccessToken()->delete();
-
-        $user($id)->currentAccessToken()->delete();
+        $user->currentAccessToken()->delete();
 
         return response()->json([
             'status_code' => 200,

@@ -6,7 +6,9 @@ use App\Models\EmailRandomizer;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Dotenv\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class EmailRandomizerController extends Controller
 {
@@ -15,38 +17,35 @@ class EmailRandomizerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = User::all();
-        return response()->json($users);
-    }
 
+//query to get all emails in the database
     public function getAllMails()
     {
+        $user = Auth::user();
         $emails = DB::table('users')->select('id','email')->get();
         return response()->json($emails);
     }
 
 
+    //query to get all selected emails
     public function selectedMails(Request $request)
     {
+        $user = Auth::user();
+        $array = [];
+        return response()->json($request->emails);
 
-        $email = new EmailRandomizer;
-        $email->emails = serialize($request->emails);
-        $email->save();
 
 
-        // $result = DB::table('email_randomizers')->select('emails')->get();
-
-        return response()->json([
-            'result' => $email,
-            'Mesage' => 'Emails Selected Successfully'
-        ]);
     }
 
-    public function RandomizeEmail()
+    public function RandomizeEmail(Request $request)
     {
-        # code...
+        $mails = DB::table('email_randomizers');
+
+        $random = Arr::random($mails,3);
+
+        return response()->json($random);
+
     }
 
 
