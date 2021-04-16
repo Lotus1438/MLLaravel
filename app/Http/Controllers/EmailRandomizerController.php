@@ -9,6 +9,8 @@ use Dotenv\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Email;
 
 class EmailRandomizerController extends Controller
 {
@@ -31,9 +33,19 @@ class EmailRandomizerController extends Controller
     public function selectedMails(Request $request)
     {
         $user = Auth::user();
-        $array = [];
-        return response()->json($request->emails);
 
+        // $selectedMails = $request->emails;
+        // $selectedMails->save();
+        // return response()->json($request->emails);
+
+        // $selectedMails = new EmailRandomizer;
+        // $selectedMails->emails = $request->emails;
+        // $selectedMails->toArray();
+        // $selectedMails->save();
+
+        $selectedMails = [];
+        return response()->json($request->emails);
+        // dd($request->emails);
 
 
     }
@@ -49,5 +61,16 @@ class EmailRandomizerController extends Controller
     }
 
 
+    // public function sendEmail()
+    // {
+    //    $details = [
+    //        'title' => "Email Test",
+    //        'body' => "This is a test"
+    //    ];
 
+    //    Mail::to("rhea.ardiente@mlhuillier.com")->send(new Email($details));
+    //    return "Email Sent";
+    // }
+
+    
 }

@@ -35,6 +35,8 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::get('random', function ($id) {
 
 });
+
+Route::get('sendEmail', [EmailRandomizerController::class, 'sendEmail']);
 // Route::post('/emails', [EmailRandomizerController::class, 'selectedMails']);
 
 
