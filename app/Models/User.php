@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
+     *Meaning pwede ni sya ma sudlan ug value
      * @var array
      */
     protected $fillable = [
@@ -24,7 +24,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for arrays.
-     *
+     *di ni sya nimo makita sa database
      * @var array
      */
     protected $hidden = [
@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be cast to native types.
-     *
+     *E sumpay ni sya ngadto sa database
      * @var array
      */
     protected $casts = [

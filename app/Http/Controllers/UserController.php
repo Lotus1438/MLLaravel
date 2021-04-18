@@ -22,7 +22,8 @@ class UserController extends Controller
         ]);
 
         if ($validator ->fails()) {
-            return response()->json(['status_code'=>400, 'message'=>'Bad Request']);
+            // return response()->json(['status_code'=>400, 'message'=>'Bad Request']);
+            return response()->json($validator->errors());
 
         }else
         {
@@ -58,11 +59,15 @@ class UserController extends Controller
     public function logout(User $id)
     {
         $user = Auth::user();
-        $user->currentAccessToken()->delete();
+        // $user->currentAccessToken()->delete();
 
         return response()->json([
             'status_code' => 200,
             'message' => 'Token deleted successfully!'
         ]);
+
+    // env(MAIL_USERNAME) = ""
     }
+
+
 }

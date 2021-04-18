@@ -72,5 +72,27 @@ class EmailRandomizerController extends Controller
     //    return "Email Sent";
     // }
 
-    
+    public function sendEmailsRandom(Request $request)
+    {
+        $response = [];
+        $response["message"] = "Successfully sending emails!";
+        $response["data"] = $request;
+        return response()->json($response);
+    }
+
+    public function allEmails()
+    {
+        $response = [];
+        $emails = User::all();
+
+        if(!$emails){
+            $response["message"] = "No data Found!";
+        }else{
+            $response["message"] = "Success";
+            $response["data"] = $emails;
+            $response["errors"] = false;
+        }
+        return response()->json($response);
+    }
+
 }

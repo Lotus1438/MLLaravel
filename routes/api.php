@@ -20,6 +20,10 @@ use App\Models\EmailRandomizer;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Send request sa back end gikan sa front ent
+Route::post('/sending/emails',[EmailRandomizerController::class,'sendEmailsRandom']);
+//mo hatag ug data gikan sa back-end padung sa front-end
+Route::get('/getting/emails',[EmailRandomizerController::class,'allEmails']);
 
 Route::post('/login',[UserController::class,'login']);
 Route::middleware('auth:sanctum')->group(function(){
@@ -30,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout/{id}', [UserController::class, 'logout']);
 
 });
+
 
 
 Route::get('random', function ($id) {
